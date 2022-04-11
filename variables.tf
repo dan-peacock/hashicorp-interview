@@ -7,3 +7,19 @@ variable "resource_group_location" {
   default = "uksouth"
   description   = "Location of the resource group."
 }
+
+variable "subscriptionID" {
+  type = string
+}
+
+variable "clientID" {
+  type = string
+}
+
+variable "clientSecret" {
+  type = string
+}
+
+variable "tenantID" {
+  type = string
+}
