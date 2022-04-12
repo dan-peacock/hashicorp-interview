@@ -2,8 +2,7 @@ terraform {
 
   required_version = ">=0.12"
   
-  required_providers {
-    azurerm = {
+    provider azurerm {
       source = "hashicorp/azurerm"
       version = "~>2.0"
       disable_terraform_partner_id = true
@@ -11,7 +10,6 @@ terraform {
       subscription_id              = var.subscription_id
       client_id                    = data.vault_azure_access_credentials.creds.client_id
       client_secret                = data.vault_azure_access_credentials.creds.client_secret
-    }
     }
 
     provider vault {
