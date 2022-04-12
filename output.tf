@@ -1,3 +1,3 @@
 output "app_service_id" {
-  value = data.azurerm_app_service.acme.id
+  value = azurerm_app_service_plan.sp-webapp-acme-1.id
 }
