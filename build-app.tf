@@ -1,11 +1,11 @@
 
 # Create the resource group
-resource "azurerm_resource_group_test" "rg" {
+resource "azurerm_resource_group" "rg" {
   name     = "acme"
   location = "westeurope"
 }
 # Create the Linux App Service Plan
-resource "azurerm_app_service_plan_test" "appserviceplan" {
+resource "azurerm_app_service_plan" "appserviceplan" {
   name                = "webapp-acme=1"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -15,7 +15,7 @@ resource "azurerm_app_service_plan_test" "appserviceplan" {
   }
 }
 # Create the web app, pass in the App Service Plan ID, and deploy code from a public GitHub repo
-resource "azurerm_app_service_test" "webapp" {
+resource "azurerm_app_service" "webapp" {
   name                = "webapp-acme-1"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
