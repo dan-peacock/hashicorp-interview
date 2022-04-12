@@ -9,7 +9,7 @@ provider "vault" {
   address = "https://vault-SP.vault.5b9819f8-78c7-4299-bd66-bed672713bca.aws.hashicorp.cloud:8200"
   auth_login {
     token = var.token
-    namespace = admin
+    namespace = "admin"
   }
 }
 
