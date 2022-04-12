@@ -19,7 +19,7 @@ resource "azurerm_app_service" "webapp-acme-1" {
   name                = "webapp-acme-1"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  app_service_plan_id = azurerm_app_service_plan.appserviceplan.id
+  app_service_plan_id = azurerm_app_service_plan.appserviceplan.name
   source_control {
     repo_url           = "https://github.com/Azure-Samples/nodejs-docs-hello-world"
     branch             = "master"
