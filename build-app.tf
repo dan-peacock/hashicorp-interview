@@ -4,18 +4,6 @@ data "vault_azure_access_credentials" "creds" {
   validate_creds = true
 }
 
-
-# Generate SP
-provider "azurerm" {
-  disable_terraform_partner_id = true
-  version                      = "=2.0"
-  tenant_id                    = var.tenant_id
-  subscription_id              = var.subscription_id
-  client_id                    = data.vault_azure_access_credentials.creds.client_id
-  client_secret                = data.vault_azure_access_credentials.creds.client_secret
-  features {}
-}
-
 # Create the resource group
 resource "azurerm_resource_group" "acme" {
   name     = "acme"
