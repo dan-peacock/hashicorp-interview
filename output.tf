@@ -1,3 +1,3 @@
-output "resource_group_name" {
-    value = azurerm_resource_group.rg.name
+output "app_service_id" {
+  value = data.azurerm_app_service.acme.id
 }
