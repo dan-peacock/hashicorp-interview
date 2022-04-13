@@ -34,7 +34,6 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~> 2.65"
-      disable_terraform_partner_id = true
       tenant_id = var.tenant_id
       subscription_id = var.subscription_id
       client_id = data.vault_azure_access_credentials.creds.client_id
