@@ -29,23 +29,14 @@ data "vault_azure_access_credentials" "creds" {
   validate_creds = true
 }
 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 2.65"
-    }
-  }
-  required_version = ">= 0.14.9"
-}
-
-provider azurerm {
-      disable_terraform_partner_id = true
-      tenant_id = var.tenant_id
-      subscription_id = var.subscription_id
-      client_id = data.vault_azure_access_credentials.creds.client_id
-      client_secret = data.vault_azure_access_credentials.creds.client_secret
-      features = {} 
+provider "azurerm" {
+  disable_terraform_partner_id = true
+  version                      = "=2.65"
+  tenant_id                    = var.tenant_id
+  subscription_id              = var.subscription_id
+  client_id                    = data.vault_azure_access_credentials.creds.client_id
+  client_secret                = data.vault_azure_access_credentials.creds.client_secret
+  features {}
 }
 
 # Create the resource group
