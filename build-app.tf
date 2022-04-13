@@ -12,7 +12,7 @@ variable VAULT_NAMESPACE {
 provider "vault" {
   address = "https://vault-SP.vault.5b9819f8-78c7-4299-bd66-bed672713bca.aws.hashicorp.cloud:8200"
   auth_login {
-    path = "auth/approle/login"
+    path = ""
      parameters = {
       role_id   = var.role_id
       secret_id = var.secret_id
