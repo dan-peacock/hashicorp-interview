@@ -12,8 +12,8 @@ provider "vault" {
      parameters = {
       role_id   = var.role_id
       secret_id = var.secret_id
+      namespace = "admin"
     }
-    #namespace = "admin"
   }
 }
 
