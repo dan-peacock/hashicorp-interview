@@ -9,13 +9,11 @@ variable VAULT_NAMESPACE {
   type = string
 }
 
-
-
 provider vault {
   address = "https://vault-cluster.vault.5b9819f8-78c7-4299-bd66-bed672713bca.aws.hashicorp.cloud:8200"
   auth_login {
     path = "auth/approle/login"
-    namespace = "admin" # only needed if auth method is mounted within another namespace (enterprise only)
+    namespace = "admin"
     parameters = {
       role_id = var.role_id
       secret_id = var.secret_id
@@ -31,7 +29,7 @@ data "vault_azure_access_credentials" "creds" {
 
 provider "azurerm" {
   disable_terraform_partner_id = true
-
+  version                      = "=2.65"
   tenant_id                    = var.tenant_id
   subscription_id              = var.subscription_id
   client_id                    = data.vault_azure_access_credentials.creds.client_id
@@ -63,7 +61,7 @@ resource "azurerm_app_service" "sa-webapp-acme-1" {
   resource_group_name = azurerm_resource_group.acme.name
   app_service_plan_id = azurerm_app_service_plan.sp-webapp-acme-1.id
     source_control {
-      repo_url           = "https://github.com/Azure-Samples/nodejs-docs-hello-world"
+      repo_url           = "https://github.com/danpeacock96/acme-corp"
       branch             = "master"
       manual_integration = true
       use_mercurial      = false
