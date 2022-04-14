@@ -63,6 +63,10 @@ resource "azurerm_storage_blob" "example" {
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = "$web"
   type                   = "Block"
+  content_type           = "text/html"
   source                 = "index.html"
 }
 
+output "primary_web_host" {
+    value = data.azurerm_storage_account.example.primary_web_host
+}
