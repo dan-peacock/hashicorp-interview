@@ -62,8 +62,10 @@ resource "azurerm_app_service" "sa-webapp-acme-1" {
   app_service_plan_id = azurerm_app_service_plan.sp-webapp-acme-1.id
     source_control {
       repo_url           = "https://github.com/danpeacock96/acme-corp"
-      php_version = 7.4
       manual_integration = true
+    }
+    site_config {
+      php_version = 7.4
     }
 }
 
