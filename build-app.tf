@@ -59,12 +59,10 @@ resource "azurerm_storage_account" "storage_account" {
 
 #Add index.html to blob storage
 resource "azurerm_storage_blob" "example" {
-  for_each=fileset("${path.module}/website", "*")
-
   name                   = "index.html"
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = "$web"
   type                   = "Block"
-  source                 = "${path.module}/${each.value.source_path}"
+  source                 = "index.html"
 }
 
