@@ -10,11 +10,3 @@ variable "tenant_id" {
 variable "subscription_id" {
   type = string
 }
-
-variable "vault_username" {
-  type = string
-}
-
-variable "vault_password" {
-  type = string
-}
