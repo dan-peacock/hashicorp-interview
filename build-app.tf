@@ -43,32 +43,27 @@ resource "azurerm_resource_group" "acme" {
   location = "westeurope"
 }
 
-# Create the Linux App Service Plan
-resource "azurerm_app_service_plan" "sp-webapp-acme-1" {
-  name                = "sp-webapp-acme-1"
-  location            = azurerm_resource_group.acme.location
-  resource_group_name = azurerm_resource_group.acme.name
-  sku {
-    tier = "Free"
-    size = "F1"
+#Create Storage account
+resource "azurerm_storage_account" "storage_account" {
+  name                = var.storage_account
+  resource_group_name = azurerm_resource_group.resource_group.name
+
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  account_kind             = "StorageV2"
+
+  static_website {
+    index_document = "index.html"
   }
 }
 
-# Create the web app, pass in the App Service Plan ID, and deploy code from a public GitHub repo
-resource "azurerm_app_service" "sa-webapp-acme-1" {
-  name                = "sa-webapp-acme-1"
-  location            = azurerm_resource_group.acme.location
-  resource_group_name = azurerm_resource_group.acme.name
-  app_service_plan_id = azurerm_app_service_plan.sp-webapp-acme-1.id
-    source_control {
-      repo_url           = "https://github.com/danpeacock96/acme-corp"
-      manual_integration = true
-    }
-    site_config {
-      php_version = 7.4
-    }
+#Add index.html to blob storage
+resource "azurerm_storage_blob" "example" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.storage_account.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  content_type           = "text/html"
+  source                 = "index.html"
 }
-
-
-
-
