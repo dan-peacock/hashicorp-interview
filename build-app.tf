@@ -47,7 +47,7 @@ resource "azurerm_resource_group" "acme" {
 resource "azurerm_storage_account" "storage_account" {
   name                = "acmestoragedanp"
   resource_group_name = azurerm_resource_group.acme.name
-  location                 = "westeurope"
+  location                 = "ukwest"
   account_tier             = "Standard"
   account_replication_type = "LRS"
   account_kind             = "StorageV2"
@@ -63,6 +63,5 @@ resource "azurerm_storage_blob" "example" {
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = "$web"
   type                   = "Block"
-  content_type           = "text/html"
-  source                 = "index.html"
+  source                 = "website"
 }
