@@ -68,5 +68,5 @@ resource "azurerm_storage_blob" "example" {
 }
 
 output "primary_web_host" {
-    value = data.azurerm_storage_account.example.primary_web_host
+    value = data.azurerm_storage_account.storage_account.primary_web_host
 }
